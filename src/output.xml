@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.10.12 on linux)" generated="2024-11-13T17:35:18.671239" rpa="false" schemaversion="5">
+<suite id="s1" name="Custom Increment" source="/home/kuosaton/webcounter/src/tests/custom_increment.robot">
+<kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-13T17:35:18.795336" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x7a5f78414eb0&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-13T17:35:18.795031" elapsed="0.000986"/>
+</kw>
+<status status="PASS" start="2024-11-13T17:35:18.792775" elapsed="0.003363"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-11-13T17:35:18.796426" elapsed="0.000153"/>
+</kw>
+<status status="NOT RUN" start="2024-11-13T17:35:18.796210" elapsed="0.000540"/>
+</branch>
+<status status="PASS" start="2024-11-13T17:35:18.792755" elapsed="0.004105"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" start="2024-11-13T17:35:18.797292" elapsed="0.000097"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2024-11-13T17:35:18.797553" elapsed="0.000134"/>
+</kw>
+<status status="NOT RUN" start="2024-11-13T17:35:18.796949" elapsed="0.000845"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2024-11-13T17:35:18.798102" elapsed="0.000496"/>
+</kw>
+<status status="PASS" start="2024-11-13T17:35:18.797876" elapsed="0.000860"/>
+</branch>
+<status status="PASS" start="2024-11-13T17:35:18.796926" elapsed="0.001899"/>
+</if>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-11-13T17:35:18.799439" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-11-13T17:35:18.798965" elapsed="0.420717"/>
+</kw>
+<status status="PASS" start="2024-11-13T17:35:18.792462" elapsed="0.427452"/>
+</kw>
+<test id="s1-t1" name="Custom increment is set correctly" line="7">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2024-11-13T17:35:19.221091" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-13T17:35:20.889895" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-11-13T17:35:20.890312" level="FAIL">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=130.0.6723.91)
+Stacktrace:
+#0 0x5f8772b068da &lt;unknown&gt;
+#1 0x5f877262b860 &lt;unknown&gt;
+#2 0x5f8772623a61 &lt;unknown&gt;
+#3 0x5f8772614278 &lt;unknown&gt;
+#4 0x5f8772615f8a &lt;unknown&gt;
+#5 0x5f877261451a &lt;unknown&gt;
+#6 0x5f8772613e14 &lt;unknown&gt;
+#7 0x5f8772613d32 &lt;unknown&gt;
+#8 0x5f8772611e2c &lt;unknown&gt;
+#9 0x5f877261247a &lt;unknown&gt;
+#10 0x5f877262e109 &lt;unknown&gt;
+#11 0x5f87726ba705 &lt;unknown&gt;
+#12 0x5f877269b4d2 &lt;unknown&gt;
+#13 0x5f87726b9a9b &lt;unknown&gt;
+#14 0x5f877269b273 &lt;unknown&gt;
+#15 0x5f877266a362 &lt;unknown&gt;
+#16 0x5f877266b33e &lt;unknown&gt;
+#17 0x5f8772ad52ef &lt;unknown&gt;
+#18 0x5f8772ad9df2 &lt;unknown&gt;
+#19 0x5f8772ac3177 &lt;unknown&gt;
+#20 0x5f8772ada571 &lt;unknown&gt;
+#21 0x5f8772aaa2ee &lt;unknown&gt;
+#22 0x5f8772af5b88 &lt;unknown&gt;
+#23 0x5f8772af5d8a &lt;unknown&gt;
+#24 0x5f8772b0558c &lt;unknown&gt;
+#25 0x7c3fcf094ac3 &lt;unknown&gt;
+</msg>
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="FAIL" start="2024-11-13T17:35:19.220650" elapsed="1.671592">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=130.0.6723.91)
+Stacktrace:
+#0 0x5f8772b068da &lt;unknown&gt;
+#1 0x5f877262b860 &lt;unknown&gt;
+#2 0x5f8772623a61 &lt;unknown&gt;
+#3 0x5f8772614278 &lt;unknown&gt;
+#4 0x5f8772615f8a &lt;unknown&gt;
+#5 0x5f877261451a &lt;unknown&gt;
+#6 0x5f8772613e14 &lt;unknown&gt;
+#7 0x5f8772613d32 &lt;unknown&gt;
+#8 0x5f8772611e2c &lt;unknown&gt;
+#9 0x5f877261247a &lt;unknown&gt;
+#10 0x5f877262e109 &lt;unknown&gt;
+#11 0x5f87726ba705 &lt;unknown&gt;
+#12 0x5f877269b4d2 &lt;unknown&gt;
+#13 0x5f87726b9a9b &lt;unknown&gt;
+#14 0x5f877269b273 &lt;unknown&gt;
+#15 0x5f877266a362 &lt;unknown&gt;
+#16 0x5f877266b33e &lt;unknown&gt;
+#17 0x5f8772ad52ef &lt;unknown&gt;
+#18 0x5f8772ad9df2 &lt;unknown&gt;
+#19 0x5f8772ac3177 &lt;unknown&gt;
+#20 0x5f8772ada571 &lt;unknown&gt;
+#21 0x5f8772aaa2ee &lt;unknown&gt;
+#22 0x5f8772af5b88 &lt;unknown&gt;
+#23 0x5f8772af5d8a &lt;unknown&gt;
+#24 0x5f8772b0558c &lt;unknown&gt;
+#25 0x7c3fcf094ac3 &lt;unknown&gt;
+</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>value</arg>
+<arg>8</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-11-13T17:35:20.893548" elapsed="0.000375"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>Aseta</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-11-13T17:35:20.894503" elapsed="0.000323"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<arg>nappia painettu 8 kertaa</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" start="2024-11-13T17:35:20.895300" elapsed="0.000195"/>
+</kw>
+<status status="FAIL" start="2024-11-13T17:35:19.220048" elapsed="1.675818">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=130.0.6723.91)
+Stacktrace:
+#0 0x5f8772b068da &lt;unknown&gt;
+#1 0x5f877262b860 &lt;unknown&gt;
+#2 0x5f8772623a61 &lt;unknown&gt;
+#3 0x5f8772614278 &lt;unknown&gt;
+#4 0x5f8772615f8a &lt;unknown&gt;
+#5 0x5f877261451a &lt;unknown&gt;
+#6 0x5f8772613e14 &lt;unknown&gt;
+#7 0x5f8772613d32 &lt;unknown&gt;
+#8 0x5f8772611e2c &lt;unknown&gt;
+#9 0x5f877261247a &lt;unknown&gt;
+#10 0x5f877262e109 &lt;unknown&gt;
+#11 0x5f87726ba705 &lt;unknown&gt;
+#12 0x5f877269b4d2 &lt;unknown&gt;
+#13 0x5f87726b9a9b &lt;unknown&gt;
+#14 0x5f877269b273 &lt;unknown&gt;
+#15 0x5f877266a362 &lt;unknown&gt;
+#16 0x5f877266b33e &lt;unknown&gt;
+#17 0x5f8772ad52ef &lt;unknown&gt;
+#18 0x5f8772ad9df2 &lt;unknown&gt;
+#19 0x5f8772ac3177 &lt;unknown&gt;
+#20 0x5f8772ada571 &lt;unknown&gt;
+#21 0x5f8772aaa2ee &lt;unknown&gt;
+#22 0x5f8772af5b88 &lt;unknown&gt;
+#23 0x5f8772af5d8a &lt;unknown&gt;
+#24 0x5f8772b0558c &lt;unknown&gt;
+#25 0x7c3fcf094ac3 &lt;unknown&gt;
+</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-11-13T17:35:20.897136" elapsed="0.557527"/>
+</kw>
+<status status="FAIL" start="2024-11-13T17:35:18.674785" elapsed="2.780236"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Custom Increment">Custom Increment</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
